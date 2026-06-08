@@ -5,12 +5,13 @@
 
 char* get_input();
 void app_close();
-char* get_a_word(char* input);
+char* get_tokens(char* input);
 typedef struct {
     char* type;
     char* value;
 } token;
 int main(void) {
+    token tokens[100] = {0}; // set everything to null to initialize it lol
     for (;;) {
         printf("MarianDB> ");
         char* input = get_input();
@@ -19,7 +20,7 @@ int main(void) {
             free(input);
             app_close();
         }
-        get_a_word(input);
+        get_tokens(input);
     }
 }
 
@@ -37,9 +38,10 @@ void app_close() {
     exit(0);
 }
 
-char* get_a_word(char* input) {
-    char* word = malloc(strlen(input) + 1);
-    printf("input = %s\n", input);
+char* get_tokens(char* input) {
+    for (int i = 0; input[i] != '\0'; i++) {
+        
+    }
 }
 token tokenize(char* input) {
     token t;
