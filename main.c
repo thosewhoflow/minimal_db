@@ -23,7 +23,13 @@ int main(void) {
             free(input);
             app_close();
         }
+        for (int i = 0; i < tokens_amount; i++) {
+            free(tokens[i].value);
+            tokens[i].type = NULL;
+        }
         tokens_amount = get_tokens(input, tokens);
+        free(input);
+        input = NULL;
         printf("tokens: %zu\n", tokens_amount);
         for (int i = 0; i < tokens_amount; i++) {
             printf("token[%d]: TYPE: %s \t VALUE: %s\n", i, tokens[i].type, tokens[i].value);
@@ -79,7 +85,8 @@ size_t get_tokens(char* input, token* tokens) {
                 // printf("%c", one_token[c]);
             }
             one_token[word_end] = '\0';
-            tokens[tokens_amount].value = one_token;
+            tokens[tokens_amount].value = malloc((word_end - word_start + 1));
+            tokens[tokens_amount].value = strcpy(tokens[tokens_amount].value, one_token);
             // printf("one token = %s\n", one_token);
             add_types_to_token(one_token, tokens, tokens_amount);
             memset(one_token, 0, 255);
