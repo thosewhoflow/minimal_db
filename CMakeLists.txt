@@ -3,7 +3,9 @@ project(marian_baza_danych C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(marian_baza_danych main.c)
+add_executable(marian_baza_danych main.c
+        tokenizer.h
+        tokenizer.c)
 
 #target_compile_options(marian_baza_danych PRIVATE
 #        -g
